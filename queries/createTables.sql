@@ -70,4 +70,4 @@ ALTER TABLE tags ADD CONSTRAINT tags_user_id_fk FOREIGN KEY (user_id) REFERENCES
 ALTER TABLE task_tags ADD CONSTRAINT task_tags_task_id_fk FOREIGN KEY (task_id) REFERENCES task (id);
 ALTER TABLE task_tags ADD CONSTRAINT task_tags_tags_id_fk FOREIGN KEY (tags_id) REFERENCES tags (id);
 ALTER TABLE task_categories ADD CONSTRAINT task_categories_categories_id_fk FOREIGN KEY (categories_id) REFERENCES categories (id);
-ALTER TABLE task_categories ADD CONSTRAINT task_categories_task_id_fk FOREIGN KEY (task_id) REFERENCES�task�(id);
+ALTER TABLE task_categories ADD CONSTRAINT task_categories_task_id_fk FOREIGN KEY (task_id) REFERENCES task (id);
