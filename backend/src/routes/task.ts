@@ -1,25 +1,21 @@
-import express,{Router} from 'express';
+import express, { Router } from 'express';
+import { createtask, deleteTask, getTask, getTaskCategories, getTasktags, listTasks, updateTask } from '../controller/taskController';
 
-export const router= Router();
+export const router = Router();
 
-router.get("/taks", function (req:any, res:any) {
-    res.send("taks home page");
-  });
+router.get("/", listTasks);
 
-  router.get("/taks/:id", function (req:any, res:any) {
-    res.send("tak id: " + req.params.id);
-  });
-  
+router.get("/:id", getTask);
 
-  router.post("/taks", function (req:any, res:any) {
-    res.send("create a new tag");
-  });
-  
-  router.put("/taks/:id", function (req:any, res:any) {
-    res.send("update tag id: " + req.params.id);
-  });
-  
-  router.delete("/taks/:id", function (req:any, res:any) {
-    res.send("delete tag id: " + req.params.id);
-  });
-  
+
+router.get("/:id/categories", getTaskCategories);
+
+router.get("/:id/tags", getTasktags);
+
+
+router.post("/", createtask);
+
+router.put("/:id", updateTask);
+
+router.delete("/:id", deleteTask);
+
