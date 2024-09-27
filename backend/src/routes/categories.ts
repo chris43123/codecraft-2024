@@ -1,15 +1,10 @@
 import express, { Router } from "express";
-import { create_categories } from "../controller/categoriesController";
+import { get_categories, create_categories, update_category, delete_category } from "../controller/categoriesController";
 
 export const router = Router();
 
-router.get("/categories", function (res: any, req: any) {
-	res.send("Categories");
-});
-
+router.get("/categories", get_categories);
 router.post("/categories", create_categories);
-
-router.delete("/categories/:id", function (req: any, res: any) {
-	res.send("Delete category id: " + req.params.id);
-});
+router.put("/categories", update_category);
+router.delete("/categories/:id", delete_category);
 
