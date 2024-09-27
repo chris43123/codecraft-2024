@@ -35,13 +35,15 @@ export const createtask = async (req: any, res: Response) => {
 
 export const updateTask = async (req: any, res: Response) => {
     try {
-
-        const payload = req.body
+        const payload = req.body;
+        const { id } = req.params;
+        const { user_id } = req.user?.id || 1;
         const pool = await db()
 
         const updateRq = pool.request()
 
-        updateRq.input('taskId', payload.taskId)
+        updateRq.input('taskId', id);
+        updateRq.input('userId', user_id);
         updateRq.input('title', payload.title)
         updateRq.input('description', payload.description)
         updateRq.input('parent_id', payload.parent_id)
@@ -60,7 +62,7 @@ export const updateTask = async (req: any, res: Response) => {
             date_modified = @date_modified
             expiration_date = @expiration_date
             status = @status
-            where id = @taskId
+            where id = @taskId AND user_id = @userId
             `)
     }
     catch (err) {
@@ -74,7 +76,7 @@ export const listTasks = async (req: any, res: Response) => {
     const pool = await db()
     const getRq = pool.request()
 
-    getRq.input('userId', req.user.id)
+    getRq.input('userId', req.user?.id || 1)
 
     const tasks = await getRq.query(
         `
@@ -145,7 +147,7 @@ export const deleteTask =  async (req: any, res: Response) => {
     const delRq = pool.request()
 
     delRq.input('taskId', req.params.taskId)
-await delRq.query(
+    await delRq.query(
         `
         update task
         set is_active = 0
