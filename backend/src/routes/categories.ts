@@ -14,4 +14,3 @@ router.delete("/categories/:id", function (req: any, res: any) {
 	res.send("Delete category id: " + req.params.id);
 });
 
-module.exports = router;
