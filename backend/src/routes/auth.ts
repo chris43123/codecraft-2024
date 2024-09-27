@@ -9,5 +9,3 @@ router.get("/login", function (res: any, req: any) {
 router.get("/register", function (res: any, req: any) {
 	res.send("Register");
 });
-
-module.exports = router;
