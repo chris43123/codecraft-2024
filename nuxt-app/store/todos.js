@@ -6,7 +6,7 @@ export const useTodosStore = defineStore('todos', {
   }),
   actions: {
     async fetchTodos() {
-      const { data }: any = await useFetch('https://jsonplaceholder.typicode.com/todos');
+      const { data } = await useFetch('https://jsonplaceholder.typicode.com/todos');
       if (data.value) {
         this.todos = data.value;
       }

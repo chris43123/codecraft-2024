@@ -1,1 +1,10 @@
 
+
+User-agent: *
+Disallow: /_nuxt/
+Disallow: /_loading/
+Disallow: /_error/
+Disallow: /_auth/
+Disallow: /_icons/
+Disallow: /_content/
+Disallow: /_images/

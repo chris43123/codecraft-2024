@@ -13,7 +13,7 @@ export const useAuthStore = defineStore('auth', {
   actions: {
     async authenticateUser({ username, password }: UserPayloadInterface) {
       // useFetch from nuxt 3
-      const { data, pending }: = await useFetch('https://dummyjson.com/auth/login', {
+      const { data, pending }: any = await useFetch('https://dummyjson.com/auth/login', {
         method: 'post',
         headers: { 'Content-Type': 'application/json' },
         body: {
