@@ -1,18 +1,18 @@
 <template>
      <div>
-    <div class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="flex items-center justify-center min-h-screen bg-sky-950">
       <div class="w-full max-w-sm p-4 bg-white rounded shadow-md">
-        <h2 class="text-2xl font-bold text-center">Login</h2>
+        <h2 class="text-2xl font-bold text-center">Inicio de Sesión</h2>
         <form @submit.prevent="handleLogin">
           <div class="mt-4">
             <label for="email" class="block text-sm">Correo</label>
             <input
-            v-model="user.username"
-        type="text"
+              v-model="user.username"
+              type="text"
        
-        placeholder="Ingrese su correo"
-        name="uname"
-        required
+              placeholder="Ingrese su correo"
+              name="uname"
+              required
               class="w-full p-2 mt-2 border rounded"
              
             />

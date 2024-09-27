@@ -18,8 +18,7 @@ app.use('/api/categories', categories.router)
 app.use('/api/tasks', tasks.router)
 app.use('/api/tags', tags.router)
 
-app.listen(process.env.port || 3000, async () => {
-    const pool = await db()
-    
-    console.log("Server listening on PORT", process.env.port || 3000);
+app.listen(process.env.PORT || 3005, async () => {
+    const pool = await db();
+    console.log("Server listening on PORT", process.env.PORT || 3005);
 });
