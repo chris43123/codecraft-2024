@@ -1,8 +1,6 @@
 import 'dotenv/config'
 import express from 'express'
 import {db} from './config/mssql'
-import { expressjwt } from 'express-jwt'
-
 import * as auth from './routes/auth'
 import * as categories from './routes/categories'
 import * as tasks from './routes/task'
