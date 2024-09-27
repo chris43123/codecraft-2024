@@ -1,6 +1,7 @@
 import 'dotenv/config'
 import express from 'express'
 import {db} from './config/mssql'
+import { expressjwt } from 'express-jwt'
 
 const app = express()
 
