@@ -22,7 +22,7 @@ export const useAuthStore = defineStore('auth', {
         },
       });
       this.loading = pending;
-
+      console.log(data)
       if (data.token) {
         const token = useCookie('token'); // useCookie new hook in nuxt 3
         token.value = data?.value?.token; // set token to cookie
