@@ -1,14 +1,14 @@
 import {db} from '../config/mssql';
 
 
-export const get_categories = async (req: any, res: any) => {
+export const get_tags = async (req: any, res: any) => {
     const user_id = req.user?.id || 1;
     
     try {
         const connection = await db();
         const result = await connection.request()
             .input('UserId', user_id)
-            .query('SELECT id, description FROM dbo.categories WHERE user_id = @UserId')
+            .query('SELECT id, description FROM dbo.tags WHERE user_id = @UserId')
 
         res.status(200).json(result.recordset);
     } catch (error) {
@@ -16,7 +16,7 @@ export const get_categories = async (req: any, res: any) => {
     }
 };
 
-export const create_category = async (req: any, res: any) => {
+export const create_tag = async (req: any, res: any) => {
     const user_id = req.user?.id || 1;
     const { description } = req.body;
 
@@ -25,7 +25,7 @@ export const create_category = async (req: any, res: any) => {
         const result = await connection.request()
             .input('UserId', user_id)
             .input('Description', description)
-            .query('INSERT INTO dbo.categories (description, user_id) VALUES (@Description, @UserId)');
+            .query('INSERT INTO dbo.tags (description, user_id) VALUES (@Description, @UserId)');
 
         res.status(200).json({ rowsAffected: result.rowsAffected, description, user_id });
     } catch (error) {
@@ -33,7 +33,7 @@ export const create_category = async (req: any, res: any) => {
     }
 };
 
-export const update_category = async (req: any, res: any) => {
+export const update_tag = async (req: any, res: any) => {
     const user_id = req.user?.id || 1;
     const { id } = req.params;
     const { description } = req.body;
@@ -42,9 +42,9 @@ export const update_category = async (req: any, res: any) => {
         const connection = await db();
         const result = await connection.request()
             .input('UserId', user_id)
-            .input('CategoryId', id)
+            .input('TagId', id)
             .input('Description', description)
-            .query('UPDATE dbo.categories SET description = @Description WHERE id = @CategoryId AND user_id = @UserId');
+            .query('UPDATE dbo.tags SET description = @Description WHERE id = @TagId AND user_id = @UserId');
 
         res.status(200).json({rowsAffected: result.rowsAffected, id, description, user_id});
     } catch (error) {
@@ -52,7 +52,7 @@ export const update_category = async (req: any, res: any) => {
     }
 };
 
-export const delete_category = async (req: any, res: any) => {
+export const delete_tag = async (req: any, res: any) => {
     const user_id = req.user?.id || 1;
     const { id } = req.params;
     
@@ -60,8 +60,8 @@ export const delete_category = async (req: any, res: any) => {
         const connection = await db();
         const result = await connection.request()
             .input('UserId', user_id)
-            .input('CategoryId', id)
-            .query('DELETE FROM dbo.categories WHERE id=@CategoryId AND user_id=@UserId');
+            .input('TagId', id)
+            .query('DELETE FROM dbo.tags WHERE id=@TagId AND user_id=@UserId');
 
         res.status(200).json({rowsAffected: result.rowsAffected, id, user_id});
     } catch (error) {

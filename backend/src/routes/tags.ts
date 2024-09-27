@@ -1,19 +1,10 @@
-import express,{Router} from 'express';
+import express, {Router} from 'express';
+import { create_tag, delete_tag, get_tags, update_tag } from '../controller/tagsController';
 
-export const router= Router();
-router.get("/tags", function (req:any, res:any) {
-    res.send("tags home page");
-  });
-  
-  router.post("/tags", function (req:any, res:any) {
-    res.send("create a new tag");
-  });
-  
-  router.put("/tags/:id", function (req:any, res:any) {
-    res.send("update tag id: " + req.params.id);
-  });
-  
-  router.delete("/tags/:id", function (req:any, res:any) {
-    res.send("delete tag id: " + req.params.id);
-  });
+export const router = Router();
+
+router.get("/tags", get_tags);
+router.post("/tags", create_tag);
+router.put("/tags/:id", update_tag);
+router.delete("/tags/:id", delete_tag);
   
