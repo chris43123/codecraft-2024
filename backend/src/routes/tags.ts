@@ -17,4 +17,3 @@ router.get("/tags", function (req:any, res:any) {
     res.send("delete tag id: " + req.params.id);
   });
   
-  module.exports = router;
