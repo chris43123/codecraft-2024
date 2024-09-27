@@ -1,5 +1,6 @@
 import 'dotenv/config'
 import express from 'express'
+import cors from 'cors'
 import {db} from './config/mssql'
 import * as auth from './routes/auth'
 import * as categories from './routes/categories'
@@ -9,6 +10,8 @@ import * as tags from './routes/tags'
 const app = express()
 
 app.use(express.json());
+
+app.use(cors())
 
 app.use('/api/auth', auth.router)
 app.use('/api/categories', categories.router)

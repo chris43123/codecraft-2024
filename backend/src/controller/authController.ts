@@ -26,6 +26,8 @@ export const register = async (req: any, res: any) => {
 export const login = async (req: any, res: any) => {
     const { email, password } = req.body;
 
+    console.log({ email, password })
+
     try {
         const connection = await db();
         const result = await connection.request()
@@ -42,6 +44,7 @@ export const login = async (req: any, res: any) => {
         const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
         res.status(200).json({ token });
     } catch (error) {
+        console.log(error)
         res.status(400).json({ error: error });
     }
 };

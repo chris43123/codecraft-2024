@@ -31,6 +31,7 @@
           <button
             type="submit"
             @click.prevent="login"
+            @onclick="login"
             class="w-full px-4 py-2 mt-4 text-white bg-blue-500 rounded hover:bg-blue-600"
           >
             Ingresar
@@ -40,6 +41,7 @@
     </div>
   </div>
 </template>
+
 <script  setup>
 import { storeToRefs } from 'pinia'; // import storeToRefs helper hook from pinia
 import { useAuthStore } from '~/store/auth'; // import the auth store we just created
@@ -49,8 +51,8 @@ const { authenticateUser } = useAuthStore(); // use authenticateUser action from
 const { authenticated } = storeToRefs(useAuthStore()); // make authenticated state reactive with storeToRefs
 
 const user = ref({
-  username: 'kminchelle', 
-  password: '0lelplR',
+  username: '', 
+  password: '',
 });
 
 const router = useRouter();
