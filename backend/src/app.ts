@@ -6,7 +6,7 @@ import { expressjwt } from 'express-jwt'
 const app = express()
 
 app.use(express.json());
-
+app.use('/', (req, res, next) => {} )
 app.listen(process.env.port || 3000, async () => {
     const pool = await db()
     
