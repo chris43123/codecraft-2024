@@ -1,9 +1,9 @@
 <template>
-    <div>
-        <div>Hello Home Page</div>
-
-    </div>
+    <div>Hello Home Page</div>
   </template>
-<script lang="ts" setup>
+  <script lang="ts" setup>
 
-</script>
+  definePageMeta({
+    middleware: 'auth' // this should match the name of the file inside the middleware directory 
+})
+  </script>

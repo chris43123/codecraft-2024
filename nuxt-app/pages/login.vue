@@ -35,3 +35,14 @@
     </div>
   </div>
 </template>
+<script lang="ts" setup>
+import { ref } from 'vue'
+const user = ref({
+  username: '',
+  password: '',
+});
+
+const login = async () => {
+  // TODO send user Data to the login endpoint and redirect if  successful 
+};
+</script>
