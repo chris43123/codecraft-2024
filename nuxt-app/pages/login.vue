@@ -5,44 +5,61 @@
         <h2 class="text-2xl font-bold text-center">Login</h2>
         <form @submit.prevent="handleLogin">
           <div class="mt-4">
-            <label for="email" class="block text-sm">Email</label>
+            <label for="email" class="block text-sm">Correo</label>
             <input
-              v-model="email"
-              id="email"
-              type="email"
+            v-model="user.username"
+        type="text"
+       
+        placeholder="Ingrese su correo"
+        name="uname"
+        required
               class="w-full p-2 mt-2 border rounded"
-              placeholder="Enter your email"
+             
             />
           </div>
           <div class="mt-4">
-            <label for="password" class="block text-sm">Password</label>
+            <label for="password" class="block text-sm">Contraseña</label>
             <input
-              v-model="password"
-              id="password"
-              type="password"
+           v-model="user.password"
+        type="password"
               class="w-full p-2 mt-2 border rounded"
-              placeholder="Enter your password"
+              placeholder="Ingrese su contraseña"
+        name="psw"
+        required
             />
           </div>
           <button
             type="submit"
+            @click.prevent="login"
             class="w-full px-4 py-2 mt-4 text-white bg-blue-500 rounded hover:bg-blue-600"
           >
-            Login
+            Ingresar
           </button>
         </form>
       </div>
     </div>
   </div>
 </template>
-<script lang="ts" setup>
-import { ref } from 'vue'
+<script  setup>
+import { storeToRefs } from 'pinia'; // import storeToRefs helper hook from pinia
+import { useAuthStore } from '~/store/auth'; // import the auth store we just created
+
+const { authenticateUser } = useAuthStore(); // use authenticateUser action from  auth store
+
+const { authenticated } = storeToRefs(useAuthStore()); // make authenticated state reactive with storeToRefs
+
 const user = ref({
-  username: '',
-  password: '',
+  username: 'kminchelle', 
+  password: '0lelplR',
 });
 
+const router = useRouter();
+
 const login = async () => {
-  // TODO send user Data to the login endpoint and redirect if  successful 
+  await authenticateUser(user.value); // call authenticateUser and pass the user object
+  // redirect to homepage if user is authenticated
+  if (authenticated) {
+    router.push('/');
+  }
 };
 </script>
