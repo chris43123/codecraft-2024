@@ -8,7 +8,7 @@
             <label for="email" class="block text-sm">Correo</label>
             <input
               v-model="user.username"
-              type="text"
+              type="email"
        
               placeholder="Ingrese su correo"
               name="uname"
