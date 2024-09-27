@@ -11,6 +11,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@types/cors": "^2.8.17",
     "@types/mssql": "^9.1.5",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",

@@ -2,9 +2,8 @@
     <div>
       <header>
         <ul>
-         
           <li v-if="!authenticated" class="loginBtn" style="float: right">
-            <nuxt-link to="/login">Login</nuxt-link>
+            <nuxt-link to="/login"></nuxt-link>
           </li>
         </ul>
       </header>
