@@ -27,22 +27,22 @@ import { defineComponent } from '@vue/composition-api'
 export default defineComponent({
     setup() {
         const task = {
-            title: 'Tarea 1',
+            title: 'Tarea',
             description: 'Esta es la tarea 1',
             tags: 'Tag 1',
             categories: 'Categoria 1'
         }
 
         const editTask = () => {
-            console.log('Editando tarea')
+            console.log('editado')
         }
 
         const completeTask = () => {
-            console.log('Completando tarea')
+            console.log('completado')
         }
 
         const deleteTask = () => {
-            console.log('Eliminando tarea')
+            console.log('eliminar')
         }
 
         return {
