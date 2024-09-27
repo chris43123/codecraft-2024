@@ -1,5 +1,7 @@
 import {db} from '../config/mssql';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+
 
 export const register = async (req: any, res: any) => {
     const { email, password } = req.body;
@@ -21,25 +23,28 @@ export const register = async (req: any, res: any) => {
 };
 
 
-// export const login = async (req: any, res: any) => {
-//     const { email, password } = req.body;
+export const login = async (req: any, res: any) => {
+    const { email, password } = req.body;
 
-//     try {
-//         const connection = await db();
-//         const result = await connection.request()
-//             .input('Email', email)
-//             .query('SELECT id, email, password, salt FROM Users WHERE email = @Email');
+    try {
+        const connection = await db();
+        const result = await connection.request()
+            .input('Email', email)
+            .query('SELECT id, email, password, salt FROM Users WHERE email = @Email');
 
-//         const user = result.recordset[0];
+        const user = result.recordset[0];
+        console.log(user);
 
-//         if (!user || !((await bcrypt.hash(password, user.Salt)) === user.Password)) {
-//             res.status(401).json({ error: 'Credenciales inválidas.' });
-//             return
-//         }
+        if (!user || !((await bcrypt.hash(password, user.salt)) === user.password)) {
+            res.status(401).json({ error: 'Credenciales inválidas.' });
+            return
+        }
 
-//         const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
-//         res.status(200).json({ token });
-//     } catch (error) {
-//         res.status(400).json({ error: error });
-//     }
-// };
+        console.log('SI')
+
+        const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
+        res.status(200).json({ token });
+    } catch (error) {
+        res.status(400).json({ error: error });
+    }
+};
