@@ -1,0 +1,13 @@
+import 'dotenv/config'
+import express from 'express'
+import {db} from './config/mssql'
+
+const app = express()
+
+app.use(express.json());
+
+app.listen(process.env.port || 3000, async () => {
+    const pool = await db()
+    
+    console.log("Server listening on PORT", process.env.port || 3000);
+});
