@@ -16,7 +16,7 @@ export const register = async (req: any, res: any) => {
             .input('Salt', salt)
             .query('INSERT INTO users (email, password, salt) VALUES (@Email, @Password, @Salt)');
 
-        res.status(201).json({ id: result.rowsAffected, email });
+        res.status(201).json({ rowsAffected: result.rowsAffected, email });
     } catch (error) {
         res.status(400).json({ error: error });
     }
@@ -33,14 +33,11 @@ export const login = async (req: any, res: any) => {
             .query('SELECT id, email, password, salt FROM Users WHERE email = @Email');
 
         const user = result.recordset[0];
-        console.log(user);
 
         if (!user || !((await bcrypt.hash(password, user.salt)) === user.password)) {
             res.status(401).json({ error: 'Credenciales inválidas.' });
             return
         }
-
-        console.log('SI')
 
         const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET as string, { expiresIn: '1h' });
         res.status(200).json({ token });
