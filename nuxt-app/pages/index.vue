@@ -60,11 +60,7 @@
   </div>
 </template>
 <script setup>
-import Task from '~/components/Task.vue';
-import { ref } from 'vue';
-export  default{
-  data:data,
-}
+
 
 
 
