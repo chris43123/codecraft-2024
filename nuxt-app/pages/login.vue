@@ -64,7 +64,9 @@ const login = async () => {
   // redirect to homepage if user is authenticated
   console.log(authenticated.value)
   if (authenticated.value) {
-    router.push('/');
+    console.log("Hello!")
+
+    router.push({ path: "/test" });
   }
 };
 </script>
