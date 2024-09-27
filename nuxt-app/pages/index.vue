@@ -1,12 +1,6 @@
 <template>
   <div>
-    <header>
-      <ul>
-        <li v-if="!authenticated" class="loginBtn" style="float: right">
-          <nuxt-link to="/login"></nuxt-link>
-        </li>
-      </ul>
-    </header>
+
     <div class="mainContent">
       <div>
         Mis tareas

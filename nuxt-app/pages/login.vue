@@ -66,7 +66,7 @@ const login = async () => {
   if (authenticated.value) {
     console.log("Hello!")
 
-    router.push({ path: "/test" });
+    navigateTo({ path: "/" });
   }
 };
 </script>
